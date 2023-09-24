@@ -1,12 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Shop.css';
 import fakedata from '../../fakeData/products.json';
 import Products from '../Products/Products';
+import Cart from '../Cart/Cart';
 
 const Shop = () => {
-    const handleClick = () => {
-        console.log("Clicked");
+    const [cart, setCart] = useState([]);
+
+    const handleClick = (props) => {
+        const newcart = [...cart, props];
+        setCart(newcart);
     }
+
+
     return (
         <div className='shop-container'>
             <div className="product">
@@ -18,7 +24,7 @@ const Shop = () => {
                 }
             </div>
             <div className="cart">
-                <h1>This is cart</h1>
+                <Cart cart={cart}></Cart>
             </div>
         </div>
     );
